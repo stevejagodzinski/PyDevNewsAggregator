@@ -8,5 +8,10 @@
             jQuery('.login-form').hide();
             jQuery('.register-form').show();
         });
+
+        {% if username_error %}
+            $('.username-form-group').addClass('has-error');
+            $('.username-input').setAttribute('aria-describedby', 'username-error').setAttribute('aria-invalid', 'true');
+        {% endif %}
     </script>
 {% endblock %}

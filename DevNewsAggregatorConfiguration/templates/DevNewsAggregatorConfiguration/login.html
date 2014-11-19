@@ -83,9 +83,12 @@
                 <p class="hint">
                      Enter your account details below:
                 </p>
-                <div class="form-group">
+                <div class="username-form-group form-group" >
                     <label class="control-label visible-ie8 visible-ie9">Username</label>
-                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+                    <input class="username-input form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" />
+                    {% if username_error %}
+                        <span id="username-error" class="help-block">{{ username_error }}</span>
+                    {% endif  %}
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
