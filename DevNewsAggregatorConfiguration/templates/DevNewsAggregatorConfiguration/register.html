@@ -9,9 +9,21 @@
             jQuery('.register-form').show();
         });
 
+        {% if email %}
+            $('#email-input').val(function( index, value ) {
+              return '{{ email }}';
+            });
+        {% endif %}
+
+        {% if username %}
+            $('#username-input').val(function( index, value ) {
+              return '{{ username }}';
+            });
+        {% endif %}
+
         {% if username_error %}
-            $('.username-form-group').addClass('has-error');
-            $('.username-input').setAttribute('aria-describedby', 'username-error').setAttribute('aria-invalid', 'true');
+            $('#username-form-group').addClass('has-error');
+            $('#username-input').setAttribute('aria-describedby', 'username-error').setAttribute('aria-invalid', 'true');
         {% endif %}
     </script>
 {% endblock %}
