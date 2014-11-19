@@ -1,10 +1,8 @@
-{% extends "DevNewsAggregatorConfiguration/base_template.html" %}
+{% extends "DevNewsAggregatorConfiguration/layout_blank_page.html" %}
 
 {% block title %}Create an account{% endblock %}
 
 {% block content %}
-    <h1>Create an account</h1>
-
     <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
