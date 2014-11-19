@@ -1,11 +1,12 @@
-{% extends "DevNewsAggregatorConfiguration/metronic_navigation_template.html" %}
+{% extends "DevNewsAggregatorConfiguration/login.html" %}
 
 {% block title %}Create an account{% endblock %}
 
-{% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create the account">
-    </form>
+{% block form_load_script %}
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('.login-form').hide();
+            jQuery('.register-form').show();
+        });
+    </script>
 {% endblock %}
