@@ -71,6 +71,7 @@ def __handle_login_success(request):
 
 
 def __redirect_to_news_feed(request):
-    html = urllib2.build_opener().open(urllib2.Request("http://127.0.0.1/DevNewsAggregator/index.php")).read()
-    body = html.split('<body>')[1].split('</body>')[0].strip()
+    # TODO: Don't convert the whole thing to a string. Remove need to remove \r\n & \t
+    html = str(urllib2.build_opener().open(urllib2.Request("http://127.0.0.1/DevNewsAggregator/index.php")).read())
+    body = html.split('<body>')[1].split('</body>')[0].strip().replace('\\n', '').replace('\\r', '').replace('\\t', '')
     return render(request, "DevNewsAggregatorConfiguration/dev_news.html", {'content_body': body})
