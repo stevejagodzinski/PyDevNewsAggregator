@@ -3,6 +3,6 @@ from DevNewsAggregatorConfiguration import views
 
 urlpatterns = patterns('',
     url(r'^$', views.feed, name='feed'),
-    url(r'^login/', views.login, name='login'),
+    url(r'^login/', views.app_login, name='login'),
     url(r'^register/', views.register, name='register'),
 )

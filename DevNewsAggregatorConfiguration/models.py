@@ -16,3 +16,10 @@ class HtmlContent(models.Model):
     time_selector = models.TextField()
     enabled = models.BooleanField()
     users = models.ManyToManyField(User)
+
+
+class QuickSidebarItem():
+    def __init__(self, news_source_id, news_source_name, checked):
+        self.news_source_id = news_source_id
+        self.news_source_name = news_source_name
+        self.checked = checked;

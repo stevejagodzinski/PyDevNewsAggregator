@@ -1,19 +1,21 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import urllib.request as urllib2
 from DevNewsAggregatorConfiguration.models import HtmlContent
+from DevNewsAggregatorConfiguration.models import QuickSidebarItem
 
 
-def login(request):
+def app_login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
+                login(request, user)
                 return __handle_login_success(request)
             else:
                 return HttpResponseRedirect(
@@ -30,8 +32,14 @@ def login(request):
 
 def feed(request):
     all_available_news_sources = __get_available_news_sources()
+    my_news_sources = __get_my_news_sources(request)
+    quick_sidebar_news_sources = __build_quick_sidebar_list(all_available_news_sources, my_news_sources)
     feed_body = __load_aggregated_news_feed()
-    return render(request, "DevNewsAggregatorConfiguration/dev_news.html", {'content_body': feed_body, 'available_news_sources': all_available_news_sources})
+
+    return render(request, "DevNewsAggregatorConfiguration/dev_news.html", {
+        'available_news_sources': quick_sidebar_news_sources,
+        'content_body': feed_body
+    })
 
 
 def register(request):
@@ -55,8 +63,21 @@ def register(request):
         })
 
 
+def __build_quick_sidebar_list(all_news_sources, my_news_sources):
+    # Execute the query now, so we don't hit the db every time we iterate over all_news_sources
+    my_news_sources = my_news_sources.values()
+    return [QuickSidebarItem(news_source.id, news_source.name, my_news_sources.filter(id=news_source.id).count() > 0) for news_source in all_news_sources]
+
+
 def __get_available_news_sources():
-    return HtmlContent.objects.order_by('name')
+    return HtmlContent.objects.filter(enabled=1).order_by('name')
+
+
+def __get_my_news_sources(request):
+    if request.user.is_authenticated():
+        return HtmlContent.objects.filter(users=request.user)
+    else:
+        return HtmlContent.objects.all()
 
 
 def __get_registration_error_message_for_username_field(username_error):

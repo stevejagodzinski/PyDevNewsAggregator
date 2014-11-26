@@ -86,7 +86,7 @@
                                 <ul class="list-items borderless">
                                     {% for news_source in available_news_sources %}
                                     <li>
-                                         {{ news_source.name }} <input data-news-sourece-id="{{ news_source.id }}" type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF">
+                                         {{ news_source.news_source_name }} <input data-news-sourece-id="{{ news_source.news_source_id }}" type="checkbox" class="make-switch" {% if news_source.checked %} checked {% endif %} data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF" >
                                     </li>
                                     {% endfor %}
                                 </ul>
