@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
@@ -30,6 +30,11 @@ def app_login(request):
         })
 
 
+def app_logout(request):
+    logout(request)
+    return __redirect_to_news_feed(request)
+
+
 def feed(request):
     all_available_news_sources = __get_available_news_sources()
     my_news_sources = __get_my_news_sources(request)
@@ -38,7 +43,9 @@ def feed(request):
 
     return render(request, "DevNewsAggregatorConfiguration/dev_news.html", {
         'available_news_sources': quick_sidebar_news_sources,
-        'content_body': feed_body
+        'authenticated': request.user.is_authenticated(),
+        'content_body': feed_body,
+        'username': request.user.get_username() if request.user.is_authenticated() else 'Anonymous'
     })
 
 
