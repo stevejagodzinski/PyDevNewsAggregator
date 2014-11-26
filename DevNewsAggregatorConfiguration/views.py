@@ -2,9 +2,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
-from django.http import HttpResponse
 from django.shortcuts import render
 import urllib.request as urllib2
+from DevNewsAggregatorConfiguration.models import HtmlContent
 
 
 def login(request):
@@ -27,11 +27,12 @@ def login(request):
             'authentication_failure': __get_login_failure_error_message(request.GET.get('authentication_failure'))
         })
 
+
 def feed(request):
-    # TODO: Don't convert the whole thing to a string. Remove need to remove \r\n & \t
-    html = str(urllib2.build_opener().open(urllib2.Request("http://127.0.0.1/DevNewsAggregator/index.php")).read())
-    body = html.split('<body>')[1].split('</body>')[0].strip().replace('\\n', '').replace('\\r', '').replace('\\t', '')
-    return render(request, "DevNewsAggregatorConfiguration/dev_news.html", {'content_body': body})
+    all_available_news_sources = __get_available_news_sources()
+    feed_body = __load_aggregated_news_feed()
+    return render(request, "DevNewsAggregatorConfiguration/dev_news.html", {'content_body': feed_body, 'available_news_sources': all_available_news_sources})
+
 
 def register(request):
     if request.method == 'POST':
@@ -54,6 +55,10 @@ def register(request):
         })
 
 
+def __get_available_news_sources():
+    return HtmlContent.objects.order_by('name')
+
+
 def __get_registration_error_message_for_username_field(username_error):
     if username_error == 'duplicate':
         return "This username has already been chosen."
@@ -70,5 +75,12 @@ def __handle_login_success(request):
     return __redirect_to_news_feed(request)
 
 
+def __load_aggregated_news_feed():
+    # TODO: Don't convert the whole thing to a string. Remove need to remove \r\n & \t ?
+    html = str(urllib2.build_opener().open(urllib2.Request("http://127.0.0.1/DevNewsAggregator/index.php")).read())
+    body = html.split('<body>')[1].split('</body>')[0].strip().replace('\\n', '').replace('\\r', '').replace('\\t', '')
+    return body
+
+
 def __redirect_to_news_feed(request):
-    return HttpResponseRedirect("/DevNewsAggregatorConfiguration/");
+    return HttpResponseRedirect("/DevNewsAggregatorConfiguration/")
