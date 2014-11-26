@@ -1,6 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
 
 class HtmlContent(models.Model):
     url = models.TextField()
@@ -14,5 +14,5 @@ class HtmlContent(models.Model):
     date_parsing_strategy = models.IntegerField()
     date_selector = models.TextField()
     time_selector = models.TextField()
-    
-
+    enabled = models.BooleanField()
+    users = models.ManyToManyField(User)
