@@ -93,7 +93,7 @@
                                 <ul class="list-items borderless">
                                     {% for news_source in available_news_sources %}
                                     <li>
-                                         {{ news_source.news_source_name }} <input data-news-sourece-id="{{ news_source.news_source_id }}" type="checkbox" class="make-switch" {% if news_source.checked %} checked {% endif %} data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF" >
+                                         {{ news_source.news_source_name }} <input data-news-source-name="{{ news_source.news_source_name }}" data-news-source-id="{{ news_source.news_source_id }}" type="checkbox" class="make-switch" {% if news_source.checked %} checked {% endif %} data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF" >
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -138,6 +138,7 @@
         <script src="{% static "metronic_v3.5/theme/assets/global/scripts/metronic.js" %}" type="text/javascript"></script>
         <script src="{% static "metronic_v3.5/theme/assets/admin/layout/scripts/layout.js" %}" type="text/javascript"></script>
         <script src="{% static "metronic_v3.5/theme/assets/admin/layout/scripts/quick-sidebar.js" %}" type="text/javascript"></script>
+        <script src="{% static "DevNewsAggregatorConfiguration.js" %}" type="text/javascript"></script>
 
         <script>
             jQuery(document).ready(function() {
