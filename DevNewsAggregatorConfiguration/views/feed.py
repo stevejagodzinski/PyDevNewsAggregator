@@ -2,6 +2,7 @@ from django.shortcuts import render
 import urllib.request as urllib2
 from DevNewsAggregatorConfiguration.models import HtmlContent
 from DevNewsAggregatorConfiguration.models import QuickSidebarItem
+from DevNewsAggregatorConfiguration.views import view_utils
 
 
 def feed(request):
@@ -14,7 +15,7 @@ def feed(request):
         'available_news_sources': quick_sidebar_news_sources,
         'authenticated': request.user.is_authenticated(),
         'content_body': feed_body,
-        'username': request.user.get_username() if request.user.is_authenticated() else 'Anonymous'
+        'username': view_utils.get_username_for_top_nav_menu(request)
     })
 
 

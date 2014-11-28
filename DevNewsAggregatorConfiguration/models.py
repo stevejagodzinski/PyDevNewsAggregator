@@ -1,3 +1,5 @@
+from enum import Enum, unique
+from string import capwords
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -18,8 +20,24 @@ class HtmlContent(models.Model):
     users = models.ManyToManyField(User)
 
 
+@unique
+class ScrapingStrategy(Enum):
+    element_per_news_entry = 0
+    news_entries_listed_in_containing_element = 1
+
+    def get_display_text(self):
+        return capwords(self.name, '_').replace('_', ' ')
+
+    def __str__(self):
+        return self.get_display_text()
+
+    @staticmethod
+    def get_all_sorted_by_display_string():
+        return sorted([scraping_strategy[1] for scraping_strategy in ScrapingStrategy.__members__.items()], key=ScrapingStrategy.__str__)
+
+
 class QuickSidebarItem():
     def __init__(self, news_source_id, news_source_name, checked):
         self.news_source_id = news_source_id
         self.news_source_name = news_source_name
-        self.checked = checked;
+        self.checked = checked

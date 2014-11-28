@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from DevNewsAggregatorConfiguration.views.view_utils import __redirect_to_news_feed
+from DevNewsAggregatorConfiguration.views.view_utils import redirect_to_news_feed
 
 
 def app_login(request):
@@ -30,7 +30,7 @@ def app_login(request):
 
 def app_logout(request):
     logout(request)
-    return __redirect_to_news_feed(request)
+    return redirect_to_news_feed(request)
 
 
 def register(request):
@@ -67,4 +67,4 @@ def __get_login_failure_error_message(authentication_failure):
 
 
 def __handle_login_success(request):
-    return __redirect_to_news_feed(request)
+    return redirect_to_news_feed(request)

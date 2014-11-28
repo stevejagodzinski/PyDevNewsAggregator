@@ -60,12 +60,10 @@
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <select class="table-group-action-input form-control input-medium" name="product[tax_class]">
-                                    <option value="">Select...</option>
-                                    <option value="1">None</option>
-                                    <option value="0">Taxable Goods</option>
-                                    <option value="0">Shipping</option>
-                                    <option value="0">USA</option>
+                                <select class="table-group-action-input form-control input-large" name="product[tax_class]">
+                                    {% for scraping_strategy in scraping_strategies %}
+                                        <option value="{{ scraping_strategy.value }}">{{ scraping_strategy.get_display_text }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
