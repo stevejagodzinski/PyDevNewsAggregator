@@ -1,0 +1,127 @@
+{% extends "DevNewsAggregatorConfiguration/metronic_navigation_template.html" %}
+
+{% block title %}Add | Edit Content Source{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 form">
+            <form id="form-add-edit" class="form-horizontal" action="#">
+                <div class="portlet form-body">
+                    <div class="portlet-title">
+                        <div class="actions btn-set">
+                            <button type="button" name="back" class="btn default"><i class="fa fa-angle-left"></i> Cancel</button>
+                            <button class="btn default"><i class="fa fa-reply"></i> Reset</button>
+                            <button class="btn green"><i class="fa fa-check"></i> Save</button>
+                            <div class="btn-group">
+                                <a class="btn yellow dropdown-toggle" href="#" data-toggle="dropdown">
+                                <i class="fa fa-share"></i> More <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="#">
+                                        Duplicate </a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                        Delete </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                        Disable </a>
+                                    </li>
+                                    <li class="divider">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Name: <span class="required">
+                            * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="htmlcontent[name]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">URL: <span class="required">
+                            * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="htmlcontent[url]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Scraping Strategy: <span class="required">
+                            * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <select class="table-group-action-input form-control input-medium" name="product[tax_class]">
+                                    <option value="">Select...</option>
+                                    <option value="1">None</option>
+                                    <option value="0">Taxable Goods</option>
+                                    <option value="0">Shipping</option>
+                                    <option value="0">USA</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Outer Content Selector: <span class="required">
+                            * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="htmlcontent[outer_content_selector]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Inner Content Selector: <span class="required">
+                            * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="htmlcontent[inner_content_selector]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Title Content Selector: <span class="required">
+                            * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="htmlcontent[title_selector]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Date Selector: <span class="required">
+                            * </span>
+                            </label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="htmlcontent[date_selector]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Time Selector:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="htmlcontent[time_selector]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Ignore First N Posts:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control input-xsmall" name="htmlcontent[ignore_first_n_posts]" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Ignore Last N Posts:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control input-xsmall" name="htmlcontent[ignore_last_n_posts]" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
