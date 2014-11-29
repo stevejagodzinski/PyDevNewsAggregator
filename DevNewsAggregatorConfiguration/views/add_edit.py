@@ -11,6 +11,10 @@ def new_html_content(request):
         form = HtmlContentForm(request.POST)
         if form.is_valid():
             instance = form.save()
+
+            instance.users.add(request.user)
+            instance.save()
+
             return __redirect_after_successful_save(instance)
     else:
         form = HtmlContentForm()
