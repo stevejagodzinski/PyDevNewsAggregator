@@ -65,6 +65,7 @@
                             </label>
                             <div class="col-md-10">
                                 <select id="{{ form.scraping_strategy.id_for_label }}" class="table-group-action-input form-control input-large" name="scraping_strategy" value="{{ form.scraping_strategy.value|default:"" }}">
+                                    <option value="">Select...</option>
                                     {% for scraping_strategy in scraping_strategies %}
                                         <option value="{{ scraping_strategy.value }}">{{ scraping_strategy.get_display_text }}</option>
                                     {% endfor %}
@@ -134,4 +135,12 @@
             </form>
         </div>
     </div>
+{% endblock %}
+
+{{% block page_level_js %}
+    <script>
+        $(function() {
+            $("#{{ form.scraping_strategy.id_for_label }}").val({{ form.scraping_strategy.value }});
+        });
+    </script>
 {% endblock %}
