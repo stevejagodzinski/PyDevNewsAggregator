@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from DevNewsAggregatorConfiguration.models import ScrapingStrategy, HtmlContentForm, HtmlContent
 from DevNewsAggregatorConfiguration.views import view_utils
 
 
+@login_required
 def new_html_content(request):
     if request.method == 'POST':
         form = HtmlContentForm(request.POST)
@@ -15,6 +17,7 @@ def new_html_content(request):
     return __render_add_edit_form(request, form)
 
 
+@login_required
 def get_or_update_html_content(request, html_content_id):
     instance = get_object_or_404(HtmlContent, id=html_content_id)
     form = HtmlContentForm(request.POST or None, instance=instance)
