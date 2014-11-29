@@ -25,7 +25,7 @@ def get_or_update_html_content(request, html_content_id):
 
 
 def __redirect_after_successful_save(html_content_instance):
-    return HttpResponseRedirect("DevNewsAggregatorConfiguration/html_content/%d/" % html_content_instance.id)
+    return HttpResponseRedirect("/DevNewsAggregatorConfiguration/html_content/%d/" % html_content_instance.id)
 
 
 def __render_add_edit_form(request, form):
