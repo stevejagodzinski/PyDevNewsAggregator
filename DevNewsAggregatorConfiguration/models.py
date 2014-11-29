@@ -30,8 +30,8 @@ class HtmlContentForm(ModelForm):
 
 @unique
 class ScrapingStrategy(Enum):
-    element_per_news_entry = 0
-    news_entries_listed_in_containing_element = 1
+    element_per_news_entry = 1
+    news_entries_listed_in_containing_element = 2
 
     def get_display_text(self):
         return capwords(self.name, '_').replace('_', ' ')
