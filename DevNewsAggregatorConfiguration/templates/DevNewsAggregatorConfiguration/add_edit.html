@@ -5,11 +5,17 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12 form">
-            <form id="form-add-edit" class="form-horizontal" action="#">
+            <form id="form-add-edit" class="form-horizontal" action="submit" method="post">
+                {% csrf_token %}
+
+                <div class="form-hidden">
+
+                </div>
+
                 <div class="portlet form-body">
                     <div class="portlet-title">
                         <div class="actions btn-set">
-                            <button type="button" name="back" class="btn default"><i class="fa fa-angle-left"></i> Cancel</button>
+                            <a href="/DevNewsAggregatorConfiguration/" name="back" class="btn default"><i class="fa fa-angle-left"></i> Cancel</a>
                             <button class="btn default"><i class="fa fa-reply"></i> Reset</button>
                             <button class="btn green"><i class="fa fa-check"></i> Save</button>
                             <div class="btn-group">
@@ -38,84 +44,98 @@
                         </div>
                     </div>
 
+                {{ form.id }}
+{#                    <input type="hidden" id="{{ form.id.id_for_label }}" value="{{ form.id.value }}" />#}
+
                     <div class="form-body">
+                        {{ form.non_field_errors }}
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Name: <span class="required">
+                            <label class="col-md-2 control-label" for="{{ form.name.id_for_label }}">Name: <span class="required">
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="htmlcontent[name]" placeholder="">
+                                <input id="{{ form.name.id_for_label }}" type="text" class="form-control" name="name" placeholder="" value="{{ form.name.value|default:"" }}">
                             </div>
+                            {{ form.name.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">URL: <span class="required">
+                            <label class="col-md-2 control-label" for="{{ form.url.id_for_label }}">URL: <span class="required">
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="htmlcontent[url]" placeholder="">
+                                <input id="{{ form.url.id_for_label }}" type="text" class="form-control" name="url" placeholder="" value="{{ form.url.value|default:"" }}">
                             </div>
+                            {{ form.url.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Scraping Strategy: <span class="required">
+                            <label class="col-md-2 control-label" for="{{ form.scraping_strategy.id_for_label }}">Scraping Strategy: <span class="required">
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <select class="table-group-action-input form-control input-large" name="product[tax_class]">
+                                <select id="{{ form.scraping_strategy.id_for_label }}" class="table-group-action-input form-control input-large" name="scraping_strategy" value="{{ form.scraping_strategy.value|default:"" }}">
                                     {% for scraping_strategy in scraping_strategies %}
                                         <option value="{{ scraping_strategy.value }}">{{ scraping_strategy.get_display_text }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
+                            {{ form.scraping_strategy.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Outer Content Selector: <span class="required">
+                            <label class="col-md-2 control-label" for="{{ form.outer_content_selector.id_for_label }}">Outer Content Selector: <span class="required">
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="htmlcontent[outer_content_selector]" placeholder="">
+                                <input id="{{ form.outer_content_selector.id_for_label }}" type="text" class="form-control" name="outer_content_selector" placeholder="" value="{{ form.outer_content_selector.value|default:"" }}">
                             </div>
+                            {{ form.outer_content_selector.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Inner Content Selector: <span class="required">
+                            <label class="col-md-2 control-label" for="{{ form.inner_content_selector.id_for_label }}">Inner Content Selector: <span class="required">
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="htmlcontent[inner_content_selector]" placeholder="">
+                                <input id="{{ form.inner_content_selector.id_for_label }}" type="text" class="form-control" name="inner_content_selector" placeholder="" value="{{ form.inner_content_selector.value|default:"" }}">
                             </div>
+                            {{ form.inner_content_selector.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Title Content Selector: <span class="required">
+                            <label class="col-md-2 control-label" for="{{ form.title_selector.id_for_label }}">Title Content Selector: <span class="required">
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="htmlcontent[title_selector]" placeholder="">
+                                <input id="{{ form.title_selector.id_for_label }}" type="text" class="form-control" name="title_selector" placeholder="" value="{{ form.title_selector.value|default:"" }}">
                             </div>
+                            {{ form.title_selector.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Date Selector: <span class="required">
+                            <label class="col-md-2 control-label" for="{{ form.date_selector.id_for_label }}">Date Selector: <span class="required">
                             * </span>
                             </label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="htmlcontent[date_selector]" placeholder="">
+                                <input id="{{ form.date_selector.id_for_label }}" type="text" class="form-control" name="date_selector" placeholder="" value="{{ form.date_selector.value|default:"" }}">
                             </div>
+                            {{ form.date_selector.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Time Selector:</label>
+                            <label class="col-md-2 control-label" for="{{ form.time_selector.id_for_label }}">Time Selector:</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="htmlcontent[time_selector]" placeholder="">
+                                <input id="{{ form.time_selector.id_for_label }}" type="text" class="form-control" name="time_selector" placeholder="" value="{{ form.time_selector.value|default:"" }}">
                             </div>
+                            {{ form.time_selector.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Ignore First N Posts:</label>
+                            <label class="col-md-2 control-label" for="{{ form.ignore_first_n_posts.id_for_label }}">Ignore First N Posts:</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control input-xsmall" name="htmlcontent[ignore_first_n_posts]" placeholder="">
+                                <input id="{{ form.ignore_first_n_posts.id_for_label }}" type="text" class="form-control input-xsmall" name="ignore_first_n_posts" placeholder="" value="{{ form.ignore_first_n_posts.value }}">
                             </div>
+                            {{ form.ignore_first_n_posts.errors }}
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Ignore Last N Posts:</label>
+                            <label class="col-md-2 control-label" for="{{ form.ignore_last_n_posts.id_for_label }}">Ignore Last N Posts:</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control input-xsmall" name="htmlcontent[ignore_last_n_posts]" placeholder="">
+                                <input id="{{ form.ignore_last_n_posts.id_for_label }}" type="text" class="form-control input-xsmall" name="ignore_last_n_posts" placeholder="" value="{{ form.ignore_last_n_posts.value }}">
                             </div>
+                            {{ form.ignore_last_n_posts.errors }}
                         </div>
                     </div>
                 </div>

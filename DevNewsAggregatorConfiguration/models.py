@@ -2,6 +2,7 @@ from enum import Enum, unique
 from string import capwords
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 
 
 class HtmlContent(models.Model):
@@ -13,11 +14,18 @@ class HtmlContent(models.Model):
     title_selector = models.TextField()
     ignore_first_n_posts = models.IntegerField(default=0)
     ignore_last_n_posts = models.IntegerField(default=0)
-    date_parsing_strategy = models.IntegerField()
+    date_parsing_strategy = models.IntegerField(default=0)
     date_selector = models.TextField()
-    time_selector = models.TextField()
-    enabled = models.BooleanField()
+    time_selector = models.TextField(null=True)
+    enabled = models.BooleanField(default=True)
     users = models.ManyToManyField(User)
+
+
+class HtmlContentForm(ModelForm):
+    class Meta:
+        model = HtmlContent
+        fields = ['url', 'name', 'scraping_strategy', 'outer_content_selector', 'inner_content_selector', 'title_selector', 'ignore_first_n_posts', 'ignore_last_n_posts',
+                  'date_selector', 'time_selector']
 
 
 @unique
