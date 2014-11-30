@@ -43,3 +43,28 @@ img {
 .scraping-hidden {
     display: none !important;
 }
+
+/* Quick Sidebar Icons */
+.page-quick-sidebar-wrapper .page-quick-sidebar .list-items > li:before {
+    /* Edit Symbol */
+    content: "\e065";
+    padding-right: 5px;
+    cursor: pointer;
+
+    /* Copied from bootstrap.css .glyphicon. Adding glyphicon to the li destroys quick-sidebar formatting from Metronic */
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#add-new-content-source:before {
+    /*Plus Sign*/
+    content: "\e081";
+}
