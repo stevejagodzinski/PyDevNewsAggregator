@@ -7,7 +7,7 @@ from django.forms import ModelForm
 
 class HtmlContent(models.Model):
     url = models.TextField()
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=30, unique=True)
     scraping_strategy = models.IntegerField()
     outer_content_selector = models.TextField()
     inner_content_selector = models.TextField()
@@ -16,7 +16,7 @@ class HtmlContent(models.Model):
     ignore_last_n_posts = models.IntegerField(default=0)
     date_parsing_strategy = models.IntegerField(default=0)
     date_selector = models.TextField()
-    time_selector = models.TextField(null=True)
+    time_selector = models.TextField(null=True, blank=True)
     enabled = models.BooleanField(default=True)
     users = models.ManyToManyField(User)
 
