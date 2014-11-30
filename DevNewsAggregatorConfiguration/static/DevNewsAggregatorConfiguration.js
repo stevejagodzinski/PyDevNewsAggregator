@@ -10,14 +10,16 @@ $('.make-switch').on('switchChange.bootstrapSwitch', function (event, state) {
     }
 });
 
-var quickSidebarItems = $('.page-quick-sidebar-wrapper .page-quick-sidebar .list-items > li');
-quickSidebarItems.click(function (e) {
-    var target = $(e.target);
-    var mousePosition = e.offsetX || e.clientX - target.offset().left;
-    if (mousePosition >= 10 && mousePosition <= 27) {
-        quickSidebarIconClicked(target);
-    }
-});
+function addQuickSideBarAddEditClickHandler() {
+    var quickSidebarItems = $('.page-quick-sidebar-wrapper .page-quick-sidebar .list-items > li');
+    quickSidebarItems.click(function (e) {
+        var target = $(e.target);
+        var mousePosition = e.offsetX || e.clientX - target.offset().left;
+        if (mousePosition >= 10 && mousePosition <= 27) {
+            quickSidebarIconClicked(target);
+        }
+    });
+}
 
 function quickSidebarIconClicked(target) {
     if(target.attr('id') == 'add-new-content-source') {

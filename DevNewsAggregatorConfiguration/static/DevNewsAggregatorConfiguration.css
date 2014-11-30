@@ -45,7 +45,7 @@ img {
 }
 
 /* Quick Sidebar Icons */
-.page-quick-sidebar-wrapper .page-quick-sidebar .list-items > li:before {
+.has-edit-button:before {
     /* Edit Symbol */
     content: "\e065";
     padding-right: 5px;
