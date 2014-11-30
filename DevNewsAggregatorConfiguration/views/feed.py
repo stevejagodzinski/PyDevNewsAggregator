@@ -1,5 +1,4 @@
 from django.shortcuts import render
-import urllib.request as urllib2
 from DevNewsAggregatorConfiguration.models import HtmlContent
 from DevNewsAggregatorConfiguration.models import QuickSidebarItem
 from DevNewsAggregatorConfiguration.views import view_utils
@@ -9,7 +8,7 @@ def feed(request):
     all_available_news_sources = __get_available_news_sources()
     my_news_sources = __get_my_news_sources(request)
     quick_sidebar_news_sources = __build_quick_sidebar_list(all_available_news_sources, my_news_sources)
-    feed_body = __load_aggregated_news_feed()
+    feed_body = __load_aggregated_news_feed(request)
 
     return render(request, "DevNewsAggregatorConfiguration/dev_news.html", {
         'available_news_sources': quick_sidebar_news_sources,
@@ -36,8 +35,6 @@ def __get_my_news_sources(request):
         return HtmlContent.objects.all()
 
 
-def __load_aggregated_news_feed():
-    # TODO: Don't convert the whole thing to a string. Remove need to remove \r\n & \t ?
-    html = str(urllib2.build_opener().open(urllib2.Request("http://127.0.0.1/DevNewsAggregator/index.php")).read())
-    body = html.split('<body>')[1].split('</body>')[0].strip().replace('\\n', '').replace('\\r', '').replace('\\t', '')
-    return body
+def __load_aggregated_news_feed(request):
+    return view_utils.get_news_feed(request)
+    # return "";
