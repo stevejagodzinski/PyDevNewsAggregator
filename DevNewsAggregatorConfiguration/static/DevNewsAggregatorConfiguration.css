@@ -51,7 +51,11 @@ img {
     padding-right: 5px;
     cursor: pointer;
 
-    /* Copied from bootstrap.css .glyphicon. Adding glyphicon to the li destroys quick-sidebar formatting from Metronic */
+    /*
+     * The below is copied from .glyphicon in bootstrap.css
+     * Adding glyphicon to the li destroys quick-sidebar formatting from
+     * Metronic. The style is applied the entire element, not to :before
+     */
     position: relative;
     top: 1px;
     display: inline-block;
