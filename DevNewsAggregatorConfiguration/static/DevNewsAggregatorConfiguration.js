@@ -32,10 +32,10 @@ function quickSidebarIconClicked(target) {
 }
 
 function handleAddClicked() {
-    window.location.replace("/DevNewsAggregatorConfiguration/html_content/new/");
+    window.location.href = "/DevNewsAggregatorConfiguration/html_content/new/";
 }
 
 function handleEditClicked(target) {
     var htmlContentId = target.attr('data-news-source-id');
-    window.location.replace("/DevNewsAggregatorConfiguration/html_content/" + htmlContentId + "/");
+    window.location.href = "/DevNewsAggregatorConfiguration/html_content/" + htmlContentId + "/";
 }
