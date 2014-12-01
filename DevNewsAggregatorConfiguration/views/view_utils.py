@@ -1,11 +1,12 @@
 from urllib.parse import urlencode
 from django.http import HttpResponseRedirect
 import urllib.request as urllib2
-from DevNewsAggregatorConfiguration.models import HtmlContent
+from django.shortcuts import render
+from DevNewsAggregatorConfiguration.models import HtmlContent, ScrapingStrategy
 from DevNewsAggregatorConfiguration.models import QuickSidebarItem
 
 
-def redirect_to_news_feed(request):
+def redirect_to_news_feed():
     return HttpResponseRedirect("/DevNewsAggregatorConfiguration/")
 
 
@@ -26,6 +27,17 @@ def get_quick_sidebar_list(request):
     all_available_news_sources = __get_available_news_sources()
     my_news_sources = __get_my_news_sources(request)
     return __build_quick_sidebar_list(all_available_news_sources, my_news_sources)
+
+
+def render_metronic_navigation_template_extension(request, template, **kwargs):
+    default_params = {
+        'authenticated': request.user.is_authenticated(),
+        'available_news_sources': get_quick_sidebar_list(request),
+        'scraping_strategies': ScrapingStrategy.get_all_sorted_by_display_string(),
+        'username': get_username_for_top_nav_menu(request)
+    }
+    default_params.update(kwargs)
+    return render(request, template, default_params)
 
 
 def __build_quick_sidebar_list(all_news_sources, my_news_sources):

@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from DevNewsAggregatorConfiguration.models import ScrapingStrategy, HtmlContentForm, HtmlContent
-from DevNewsAggregatorConfiguration.views import view_utils
+from DevNewsAggregatorConfiguration.views.view_utils import render_metronic_navigation_template_extension
 
 
 @login_required
@@ -48,10 +48,4 @@ def __redirect_after_successful_save(html_content_instance):
 
 
 def __render_add_edit_form(request, form):
-    return render(request, "DevNewsAggregatorConfiguration/add_edit.html", {
-        'authenticated': request.user.is_authenticated(),
-        'available_news_sources': view_utils.get_quick_sidebar_list(request),
-        'form': form,
-        'scraping_strategies': ScrapingStrategy.get_all_sorted_by_display_string(),
-        'username': view_utils.get_username_for_top_nav_menu(request)
-    })
+    return render_metronic_navigation_template_extension(request, "DevNewsAggregatorConfiguration/add_edit.html", form=form)

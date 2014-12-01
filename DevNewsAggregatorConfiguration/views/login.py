@@ -14,7 +14,7 @@ def app_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return __handle_login_success(request)
+                return __handle_login_success()
             else:
                 return HttpResponseRedirect(
                     "/DevNewsAggregatorConfiguration/login/?authentication_failure=account_disabled&username=" + username)
@@ -30,7 +30,7 @@ def app_login(request):
 
 def app_logout(request):
     logout(request)
-    return redirect_to_news_feed(request)
+    return redirect_to_news_feed()
 
 
 def register(request):
@@ -66,5 +66,5 @@ def __get_login_failure_error_message(authentication_failure):
         return "The username and password were incorrect."
 
 
-def __handle_login_success(request):
-    return redirect_to_news_feed(request)
+def __handle_login_success():
+    return redirect_to_news_feed()
