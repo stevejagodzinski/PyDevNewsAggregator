@@ -50,6 +50,7 @@ def __redirect_after_successful_save(html_content_instance):
 def __render_add_edit_form(request, form):
     return render(request, "DevNewsAggregatorConfiguration/add_edit.html", {
         'authenticated': request.user.is_authenticated(),
+        'available_news_sources': view_utils.get_quick_sidebar_list(request),
         'form': form,
         'scraping_strategies': ScrapingStrategy.get_all_sorted_by_display_string(),
         'username': view_utils.get_username_for_top_nav_menu(request)
