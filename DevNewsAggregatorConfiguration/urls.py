@@ -3,6 +3,7 @@ from DevNewsAggregatorConfiguration.views import feed, login, add_edit, html_con
 
 urlpatterns = patterns('',
                        url(r'^$', feed.feed, name='feed'),
+                       url(r'^html_content/(\d+)/duplicate/', add_edit.duplicate, name='duplicate'),
                        url(r'^html_content/(\d+)/', add_edit.get_or_update_html_content, name='get_or_update_html_content'),
                        url(r'^html_content/new/', add_edit.new_html_content, name='new_html_content'),
                        url(r'^html_content_user/add/(.+)/', html_content_user.subscribe_user_to_html_content, name='subscribe_user_to_html_content'),

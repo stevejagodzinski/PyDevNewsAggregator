@@ -6,6 +6,18 @@ from DevNewsAggregatorConfiguration.views import view_utils
 
 
 @login_required
+def duplicate(request, html_content_id):
+    if request.method == 'GET':
+        instance = get_object_or_404(HtmlContent, id=html_content_id)
+        instance.id = None
+        instance.name = None
+        form = HtmlContentForm(None, instance=instance)
+        return __render_add_edit_form(request, form)
+    else:
+        return new_html_content(request)
+
+
+@login_required
 def new_html_content(request):
     if request.method == 'POST':
         form = HtmlContentForm(request.POST)
