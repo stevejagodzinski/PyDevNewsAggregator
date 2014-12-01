@@ -52,22 +52,29 @@ function handleContentAdded(content) {
     var newNewsEntries = $(content).children('.news-entry');
 
     var newNewsEntriesTraversalIndex = 0;
+    var newNewsEntry = newNewsEntries.eq(newNewsEntriesTraversalIndex);
+    var newNewsEntryDate = getDate(newNewsEntry);
 
-    for (var existingNewsEntriesTraversalIndex = 0; existingNewsEntriesTraversalIndex<existingNewsEntries.length && newNewsEntriesTraversalIndex<newNewsEntries.length; existingNewsEntriesTraversalIndex++) {
+    for (var existingNewsEntriesTraversalIndex = 0; existingNewsEntriesTraversalIndex<existingNewsEntries.length; existingNewsEntriesTraversalIndex++) {
         var existingNewsEntry = existingNewsEntries.eq(existingNewsEntriesTraversalIndex);
 
-        // TODO: Set timezone on php server
-        var existingNewsEntryDate = new Date(existingNewsEntry.find('.news-entry-date').attr('data-iso-date'));
+        var existingNewsEntryDate = getDate(existingNewsEntry);
 
         do{
             var inserted = false;
-            // TODO: Don't run this jquery every time
-            var newNewsEntry = newNewsEntries.eq(newNewsEntriesTraversalIndex);
-            var newNewsEntryDate = new Date(newNewsEntry.find('.news-entry-date').attr('data-iso-date'));
+
             if(newNewsEntryDate > existingNewsEntryDate) {
                 newNewsEntry.insertBefore(existingNewsEntry);
                 inserted = true;
+
                 newNewsEntriesTraversalIndex++;
+
+                if(newNewsEntriesTraversalIndex >= newNewsEntries.length) {
+                    return;
+                }
+
+                newNewsEntry = newNewsEntries.eq(newNewsEntriesTraversalIndex);
+                newNewsEntryDate = getDate(newNewsEntry);
             }
         }while(inserted);
     }
@@ -75,4 +82,8 @@ function handleContentAdded(content) {
     for(var i=newNewsEntriesTraversalIndex; i<newNewsEntries.length; i++) {
         contentContainer.append(newNewsEntries.get(i));
     }
+}
+
+function getDate(newEntry) {
+    return newEntry.find('.news-entry-date').attr('data-iso-date')
 }
