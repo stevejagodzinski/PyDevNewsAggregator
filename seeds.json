@@ -1,92 +1,182 @@
 [
 {
-    "model": "DevNewsAggregatorConfiguration.htmlcontent",
-    "fields": {
-        "title_selector": ".find('.entry-title').html()",
-        "outer_content_selector": ".post",
-        "enabled": true,
-        "ignore_first_n_posts": 0,
-        "name": "Primefaces",
-        "date_selector": ".find('.entry-date').text()",
-        "scraping_strategy": 1,
-        "time_selector": ".find('.entry-date').parent().attr('title')",
-        "url": "http://blog.primefaces.org/",
-        "ignore_last_n_posts": 0,
-        "inner_content_selector": ".find('.entry-content').html()",
-        "date_parsing_strategy": 0
-    },
-    "pk": 4
+  "fields": {
+    "url": "http://blog.primefaces.org/",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": ".find('.entry-content').html()",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": ".find('.entry-date').parent().attr('title')",
+    "title_selector": ".find('.entry-title').html()",
+    "name": "Primefaces",
+    "scraping_strategy": 1,
+    "outer_content_selector": ".post",
+    "date_parsing_strategy": 0,
+    "date_selector": ".find('.entry-date').text()"
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 4
 },
 {
-    "model": "DevNewsAggregatorConfiguration.htmlcontent",
-    "fields": {
-        "title_selector": ".find('.entry-title').html()",
-        "outer_content_selector": ".post",
-        "enabled": true,
-        "ignore_first_n_posts": 0,
-        "name": "jQuery",
-        "date_selector": ".find('.entry-date').text()",
-        "scraping_strategy": 1,
-        "time_selector": ".find('.entry-date').parent().attr('title')",
-        "url": "http://blog.jquery.com/",
-        "ignore_last_n_posts": 0,
-        "inner_content_selector": ".find('.entry-content').html()",
-        "date_parsing_strategy": 0
-    },
-    "pk": 5
+  "fields": {
+    "url": "http://blog.jquery.com/",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": ".find('.entry-content').html()",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": ".find('.entry-date').parent().attr('title')",
+    "title_selector": ".find('.entry-title').html()",
+    "name": "jQuery",
+    "scraping_strategy": 1,
+    "outer_content_selector": ".post",
+    "date_parsing_strategy": 0,
+    "date_selector": ".find('.entry-date').text()"
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 5
 },
 {
-    "model": "DevNewsAggregatorConfiguration.htmlcontent",
-    "fields": {
-        "title_selector": ".find('.entry-title').html()",
-        "outer_content_selector": ".post",
-        "enabled": true,
-        "ignore_first_n_posts": 0,
-        "name": "jQuery UI",
-        "date_selector": ".find('.entry-date').text()",
-        "scraping_strategy": 1,
-        "time_selector": ".find('.entry-date').parent().attr('title')",
-        "url": "http://blog.jqueryui.com/",
-        "ignore_last_n_posts": 0,
-        "inner_content_selector": ".find('.entry-content').html()",
-        "date_parsing_strategy": 0
-    },
-    "pk": 12
+  "fields": {
+    "url": "http://blog.jqueryui.com/",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": ".find('.entry-content').html()",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": ".find('.entry-date').parent().attr('title')",
+    "title_selector": ".find('.entry-title').html()",
+    "name": "jQuery UI",
+    "scraping_strategy": 1,
+    "outer_content_selector": ".post",
+    "date_parsing_strategy": 0,
+    "date_selector": ".find('.entry-date').text()"
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 12
 },
 {
-    "model": "DevNewsAggregatorConfiguration.htmlcontent",
-    "fields": {
-        "title_selector": ".find('.text').eq($n).prev().text()",
-        "outer_content_selector": "#content",
-        "enabled": true,
-        "ignore_first_n_posts": 1,
-        "name": "Apache Tomcat",
-        "date_selector": ".find('.text').eq($n).prev().children().html()",
-        "scraping_strategy": 2,
-        "time_selector": "",
-        "url": "http://tomcat.apache.org/",
-        "ignore_last_n_posts": 1,
-        "inner_content_selector": ".find('.text').eq($n).html()",
-        "date_parsing_strategy": 0
-    },
-    "pk": 13
+  "fields": {
+    "url": "http://tomcat.apache.org/",
+    "ignore_last_n_posts": 1,
+    "inner_content_selector": ".find('.text').eq($n).html()",
+    "ignore_first_n_posts": 1,
+    "enabled": true,
+    "time_selector": "",
+    "title_selector": ".find('.text').eq($n).prev().text()",
+    "name": "Apache Tomcat",
+    "scraping_strategy": 2,
+    "outer_content_selector": "#content",
+    "date_parsing_strategy": 0,
+    "date_selector": ".find('.text').eq($n).prev().children().html()"
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 13
 },
 {
-    "model": "DevNewsAggregatorConfiguration.htmlcontent",
-    "fields": {
-        "title_selector": ".find('.entry-title').html()",
-        "outer_content_selector": ".post",
-        "enabled": true,
-        "ignore_first_n_posts": 0,
-        "name": "JetBrains IntelliJ IDEA",
-        "date_selector": ".find('.entry-date').text()",
-        "scraping_strategy": 1,
-        "time_selector": ".find('.entry-date').parent().attr('title')",
-        "url": "http://blog.jetbrains.com/idea/",
-        "ignore_last_n_posts": 0,
-        "inner_content_selector": ".find('.entry-content').html()",
-        "date_parsing_strategy": 0
-    },
-    "pk": 14
+  "fields": {
+    "url": "http://blog.jetbrains.com/idea/",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": ".find('.entry-content').html()",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": ".find('.entry-date').parent().attr('title')",
+    "title_selector": ".find('.entry-title').html()",
+    "name": "JetBrains IntelliJ IDEA",
+    "scraping_strategy": 1,
+    "outer_content_selector": ".post",
+    "date_parsing_strategy": 0,
+    "date_selector": ".find('.entry-date').text()"
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 14
+},
+{
+  "fields": {
+    "url": "http://spring.io/blog.atom",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": "",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": "",
+    "title_selector": "",
+    "name": "Spring",
+    "scraping_strategy": 3,
+    "outer_content_selector": "",
+    "date_parsing_strategy": 0,
+    "date_selector": ""
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 15
+},
+{
+  "fields": {
+    "url": "http://www.postgresql.org/news.rss",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": "",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": "",
+    "title_selector": "",
+    "name": "PostgreSQL",
+    "scraping_strategy": 3,
+    "outer_content_selector": "",
+    "date_parsing_strategy": 0,
+    "date_selector": ""
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 16
+},
+{
+  "fields": {
+    "url": "http://in.relation.to/service/Feed/atom/Area/Bloggers/Comments/exclude",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": "",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": "",
+    "title_selector": "",
+    "name": "Hibernate",
+    "scraping_strategy": 3,
+    "outer_content_selector": "",
+    "date_parsing_strategy": 0,
+    "date_selector": ""
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 17
+},
+{
+  "fields": {
+    "url": "https://webtide.com/feed/",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": "",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": "",
+    "title_selector": "",
+    "name": "Jetty",
+    "scraping_strategy": 3,
+    "outer_content_selector": "",
+    "date_parsing_strategy": 0,
+    "date_selector": ""
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 18
+},
+{
+  "fields": {
+    "url": "http://mail-archives.apache.org/mod_mbox/maven-announce/?format=atom",
+    "ignore_last_n_posts": 0,
+    "inner_content_selector": "",
+    "ignore_first_n_posts": 0,
+    "enabled": true,
+    "time_selector": "",
+    "title_selector": "",
+    "name": "Maven",
+    "scraping_strategy": 3,
+    "outer_content_selector": "",
+    "date_parsing_strategy": 0,
+    "date_selector": ""
+  },
+  "model": "DevNewsAggregatorConfiguration.htmlcontent",
+  "pk": 19
 }
 ]
