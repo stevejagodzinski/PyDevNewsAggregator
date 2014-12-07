@@ -9,16 +9,25 @@ class HtmlContent(models.Model):
     url = models.TextField()
     name = models.CharField(max_length=30, unique=True)
     scraping_strategy = models.IntegerField()
-    outer_content_selector = models.TextField()
-    inner_content_selector = models.TextField()
-    title_selector = models.TextField()
+    outer_content_selector = models.TextField(null=True, blank=True)
+    inner_content_selector = models.TextField(null=True, blank=True)
+    title_selector = models.TextField(null=True, blank=True)
     ignore_first_n_posts = models.IntegerField(default=0)
     ignore_last_n_posts = models.IntegerField(default=0)
     date_parsing_strategy = models.IntegerField(default=0)
-    date_selector = models.TextField()
+    date_selector = models.TextField(null=True, blank=True)
     time_selector = models.TextField(null=True, blank=True)
     enabled = models.BooleanField(default=True)
     users = models.ManyToManyField(User)
+
+    def clean_fields(self, exclude=None):
+        if self.scraping_strategy != ScrapingStrategy.atom_feed.value:
+            required_html_fields = ('outer_content_selector', 'inner_content_selector', 'title_selector', 'date_selector')
+            for f in self._meta.fields:
+                if f.name in required_html_fields:
+                    f.blank = False
+
+        super(HtmlContent, self).clean_fields(exclude)
 
 
 class HtmlContentForm(ModelForm):
@@ -32,6 +41,7 @@ class HtmlContentForm(ModelForm):
 class ScrapingStrategy(Enum):
     element_per_news_entry = 1
     news_entries_listed_in_containing_element = 2
+    atom_feed = 3
 
     def get_display_text(self):
         return capwords(self.name, '_').replace('_', ' ')

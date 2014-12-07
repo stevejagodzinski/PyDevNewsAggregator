@@ -4,29 +4,39 @@ import urllib.request as urllib2
 from django.shortcuts import render
 from DevNewsAggregatorConfiguration.models import HtmlContent, ScrapingStrategy
 from DevNewsAggregatorConfiguration.models import QuickSidebarItem
+from django.http.response import HttpResponse
 
 
 def redirect_to_news_feed():
     return HttpResponseRedirect("/DevNewsAggregatorConfiguration/")
 
 
-def get_username_for_top_nav_menu(request):
-    return request.user.get_username() if request.user.is_authenticated() else 'Anonymous'
-
-
-def get_news_feed(request, name=None):
+def get_html_feed(request, name=None):
     url = "http://127.0.0.1/DevNewsAggregator/index.php?%s" % __build_query_params({'name': name, 'userid': request.user.id})
     http_response = urllib2.build_opener().open(urllib2.Request(url))
     response_bytes = http_response.read()
     html = response_bytes.decode('utf-8')
     body = html.split('<body>')[1].split('</body>')[0].strip().replace('\\n', '').replace('\\r', '').replace('\\t', '')
-    return body
+    return HttpResponse(body)
+
+
+def get_rss_feed(request, name=None):
+    url = "http://127.0.0.1/cgi-bin/FeedScraper.pl?%s" % __build_query_params({'name': name, 'userid': request.user.id})
+    http_response = urllib2.build_opener().open(urllib2.Request(url))
+    response_bytes = http_response.read()
+    html = response_bytes.decode('utf-8')
+    body = html.replace('\\n', '').replace('\\r', '').replace('\\t', '')
+    return HttpResponse(body)
 
 
 def get_quick_sidebar_list(request):
     all_available_news_sources = __get_available_news_sources()
     my_news_sources = __get_my_news_sources(request)
     return __build_quick_sidebar_list(all_available_news_sources, my_news_sources)
+
+
+def get_username_for_top_nav_menu(request):
+    return request.user.get_username() if request.user.is_authenticated() else 'Anonymous'
 
 
 def render_metronic_navigation_template_extension(request, template, **kwargs):
